@@ -22,10 +22,7 @@
   }
 
   interface UserProps {
-    birthdate: Date;
     email: string;
-    gender: Gender;
-    name: string;
     role: string;
   }
 
@@ -54,18 +51,40 @@
     role: string;
     workingDirectory: string;
   }
-
+  interface SettingsProp {
+    lastOpenFolder: string;
+    workingDirectory: string;
+  }
   class SettingsProps {
     public workingDirectory: string;
     public lastOpenFolder: string;
 
-    constructor({ workingDirectory, lastOpenFolder }: SettingsProps) {
+    constructor({ workingDirectory, lastOpenFolder }: SettingsProp) {
       this.workingDirectory = workingDirectory;
       this.lastOpenFolder = lastOpenFolder;
     }
   }
 
-  const userSettings = new SettingsProps({
+  class UserSettigs {
+    public person: Person;
+    public user: User;
+    public settings: SettingsProp;
+    constructor({
+      name,
+      gender,
+      birthdate,
+      email,
+      role,
+      workingDirectory,
+      lastOpenFolder,
+    }: SettingsProps) {
+      this.person = new Person({ name, gender, birthdate });
+      this.user = new User({ email, role });
+      this.settings = new SettingsProps({ workingDirectory, lastOpenFolder });
+    }
+  }
+
+  const userSettings = new UserSettigs({
     birthdate: new Date("1985-10-21"),
     email: "fernando@google.com",
     gender: "M",
