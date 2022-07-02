@@ -41,5 +41,5 @@
   const lastDayModification = 12;
 
   // cantidad máxima de clases por estudiante - max classes per student
-  const maxClassForStudents = 6;
+  const maxClassPerStudents = 6;
 })();
